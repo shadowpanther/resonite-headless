@@ -8,7 +8,7 @@ Sample docker-compose:
 version: "3.3"
 services:
   image:
-    image: shadowpanther/neosvr-headless:latest
+    image: shadowpanther/neosvr-headless:mono
     container_name: neosvr-headless
     tty: true
     stdin_open: true
