@@ -12,7 +12,7 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get install  -y --no-install-recommends --no-install-suggests \
 		mono-complete \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/{apt,dpkg,cache}
 
 ENV	STEAMAPPID=740250 \
 	STEAMAPP=neosvr \
