@@ -8,7 +8,7 @@ services:
     environment:
       STEAMBETA: CHANGEME
       STEAMBETAPASSWORD: CHANGEME
-      STEAMLOGIN: "USED PASSWORD"
+      STEAMLOGIN: "USER PASSWORD"
     volumes:
       - "./Config:/Config:ro"
       - "./Logs:/Logs"
