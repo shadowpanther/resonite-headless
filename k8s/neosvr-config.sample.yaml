@@ -1,0 +1,56 @@
+apiVersion: v1
+data:
+  Config.json: |
+    {
+      "comment": "This is the main config",
+      "tickRate": 60.0,
+      "maxConcurrentAssetTransfers": 16,
+      "usernameOverride": null,
+      "loginCredential": "yourHeadlessNeosAccount",
+      "loginPassword": "yourPassword",
+      "startWorlds": [
+        {
+          "isEnabled": true,
+          "sessionName": "Sample Session",
+          "customSessionId": "S-U-YourHeadless:Sample_Session",
+          "description": "This is a sample session",
+          "maxUsers": 16,
+          "accessLevel": "Anyone",
+          "hideFromPublicListing": false,
+          "tags": [
+            "sample",
+            "session"
+          ],
+          "mobileFriendly": false,
+          "loadWorldURL": "neosrec://GoesHere",
+          "saveAsOwner": null,
+          "loadWorldPresetName": null,
+          "forcePort": null,
+          "keepOriginalRoles": false,
+          "defaultUserRoles": {
+            "Your Main User": "Admin",
+            "Your Friend": "Admin"
+          },
+          "autoInviteUsernames": null,
+          "autoInviteMessage": null,
+          "autoRecover": true,
+          "idleRestartInterval": 900.0,
+          "forcedRestartInterval": -1.0,
+          "saveOnExit": false,
+          "autosaveInterval": -1.0,
+          "awayKickMinutes": 1.0,
+          "autoSleep": true
+        }
+      ],
+      "dataFolder": null,
+      "cacheFolder": null,
+      "allowedUrlHosts": [
+        "api.prismteam.tk"
+      ],
+      "autoSpawnItems": null,
+      "metamovieRoles": null
+    }
+  STEAMBETA: headless-client
+  STEAMBETAPASSWORD: getThisFromDiscord
+  STEAMLOGIN: your_steam_account_name andPassword
+kind: ConfigMap
