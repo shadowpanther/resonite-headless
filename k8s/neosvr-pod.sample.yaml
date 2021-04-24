@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: neosvr-pod
+spec:
+  containers:
+    - name: neosvr-headless
+      image: shadowpanther/neosvr-headless
+      env:
+        - name: STEAMBETA
+          valueFrom:
+            configMapKeyRef:
+              name: neosvr-config
+              key: STEAMBETA
+        - name: STEAMBETAPASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: neosvr-config
+              key: STEAMBETAPASSWORD
+        - name: STEAMLOGIN
+          valueFrom:
+            configMapKeyRef:
+              name: neosvr-config
+              key: STEAMLOGIN
+      volumeMounts:
+        - name: config-vol
+          mountPath: /Config
+          readOnly: true
+        - name: logs-vol
+          mountPath: /Logs
+  volumes:
+    - name: config-vol
+      configMap:
+        name: neosvr-config
+        items:
+          - key: Config.json
+            path: Config.json
+    - name: logs-vol
+      emptyDir: {}

@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  image:
+    image: shadowpanther/neosvr-headless:latest
+    container_name: neosvr-headless
+    tty: true
+    stdin_open: true
+    environment:
+      STEAMBETA: CHANGEME
+      STEAMBETAPASSWORD: CHANGEME
+      STEAMLOGIN: "USER PASSWORD"
+    volumes:
+      - "./Config:/Config:ro"
+      - "./Logs:/Logs"
+      - "/etc/localtime:/etc/localtime:ro"
+    restart: unless-stopped
+

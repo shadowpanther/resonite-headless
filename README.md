@@ -23,4 +23,6 @@ services:
     restart: unless-stopped
 ```
 
+Place your `Config.json` into `Config` folder. Logs would be stored in `Logs` folder.
+
 You probably need to set `vm.max_map_count=262144` by doing `echo "vm.max_map_count=262144" >> /etc/sysctl.conf` lest you end up with frequent GC crashes.
