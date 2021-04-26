@@ -1,3 +1,4 @@
 Config/Config.json
 Logs/*.log
 k8s/neosvr-config.yaml
+docker-compose.yaml
