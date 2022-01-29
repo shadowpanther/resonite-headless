@@ -6,7 +6,7 @@ bash "${STEAMCMDDIR}/steamcmd.sh" \
 	+app_license_request ${STEAMAPPID} \
 	+app_update ${STEAMAPPID} -beta ${STEAMBETA} -betapassword ${STEAMBETAPASSWORD} validate \
 	+quit
-find ./Data/Assets -atime +7 -delete
-find ./Data/Cache -atime +7 -delete
-find /Logs -atime +30 -delete
-mono Neos.exe -c /Config/Config.json -l /Logs
+find ${STEAMAPPDIR}/Data/Assets -type f -atime +7 -delete
+find ${STEAMAPPDIR}/Data/Cache -type f -atime +7 -delete
+find /Logs -type f -name *.log -atime +30 -delete
+mono ${STEAMAPPDIR}/Neos.exe -c /Config/Config.json -l /Logs

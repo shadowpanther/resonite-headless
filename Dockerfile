@@ -33,6 +33,9 @@ RUN	sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 
 ENV	LANG en_GB.UTF-8 
 
+# Fix the LetsEncrypt CA cert
+RUN	sed -i 's#mozilla/DST_Root_CA_X3.crt#!mozilla/DST_Root_CA_X3.crt#' /etc/ca-certificates.conf && update-ca-certificates
+
 # Create user, install SteamCMD
 RUN	addgroup -gid ${USER} steam && \
 	adduser --disabled-login \
@@ -41,15 +44,15 @@ RUN	addgroup -gid ${USER} steam && \
 		--gid ${USER} \
 		--uid ${USER} \
 		steam && \
-	mkdir -p ${STEAMCMDDIR} ${HOMEDIR} ${STEAMAPPDIR} /Config /Logs && \
+	mkdir -p ${STEAMCMDDIR} ${HOMEDIR} ${STEAMAPPDIR} /Config /Logs /Scripts && \
 	cd ${STEAMCMDDIR} && \
 	curl -sqL ${STEAMCMDURL} | tar zxfv - && \
 	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${HOMEDIR} ${STEAMAPPDIR} /Config /Logs
 
-COPY	./start_neosvr.sh ${STEAMAPPDIR}/
+COPY	./start_neosvr.sh /Scripts/
 
-RUN	chown -R ${USER}:${USER} ${STEAMAPPDIR}/start_neosvr.sh && \
-	chmod +x ${STEAMAPPDIR}/start_neosvr.sh
+RUN	chown -R ${USER}:${USER} /Scripts/start_neosvr.sh && \
+	chmod +x /Scripts/start_neosvr.sh
 
 # Switch to user
 USER ${USER}
@@ -58,4 +61,4 @@ WORKDIR ${STEAMAPPDIR}
 
 VOLUME ["${STEAMAPPDIR}", "/Config", "/Logs"]
 
-CMD ["bash", "start_neosvr.sh"]
+CMD ["bash", "/Scripts/start_neosvr.sh"]
