@@ -61,4 +61,7 @@ WORKDIR ${STEAMAPPDIR}
 
 VOLUME ["${STEAMAPPDIR}", "/Config", "/Logs"]
 
-CMD /Scripts/setup_neosvr.sh && /Scripts/start_neosvr.sh
+STOPSIGNAL SIGINT
+
+ENTRYPOINT ["/Scripts/setup_neosvr.sh"]
+CMD ["/Scripts/start_neosvr.sh"]
