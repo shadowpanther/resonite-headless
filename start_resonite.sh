@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec mono ${STEAMAPPDIR}/Headless/Resonite.exe -c /Config/Config.json -l /Logs
+exec mono ${STEAMAPPDIR}/Headless/Resonite.exe -HeadlessConfig /Config/Config.json -l /Logs
