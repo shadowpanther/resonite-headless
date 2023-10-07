@@ -17,7 +17,7 @@ ENV	STEAMAPPDIR="${HOMEDIR}/${STEAMAPP}-headless"
 RUN	set -x && \
 	apt-get -y update && \
 	apt-get -y upgrade && \
-	apt-get -y install curl lib32gcc1 libopus-dev libopus0 opus-tools && \
+	apt-get -y install curl lib32gcc1 libopus-dev libopus0 opus-tools libc-dev && \
 	rm -rf /var/lib/{apt,dpkg,cache}
 
 # Add locales
