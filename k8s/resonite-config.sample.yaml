@@ -6,7 +6,7 @@ data:
       "tickRate": 60.0,
       "maxConcurrentAssetTransfers": 16,
       "usernameOverride": null,
-      "loginCredential": "yourHeadlessNeosAccount",
+      "loginCredential": "yourHeadlessResoniteAccount",
       "loginPassword": "yourPassword",
       "startWorlds": [
         {
@@ -22,7 +22,7 @@ data:
             "session"
           ],
           "mobileFriendly": false,
-          "loadWorldURL": "neosrec://GoesHere",
+          "loadWorldURL": "resrec://GoesHere",
           "saveAsOwner": null,
           "loadWorldPresetName": null,
           "forcePort": null,
