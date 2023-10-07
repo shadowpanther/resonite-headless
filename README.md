@@ -7,7 +7,7 @@ Sample docker-compose:
 ```
 version: "3.3"
 services:
-  image:
+  resonite:
     image: shadowpanther/resonite-headless:latest
     container_name: resonite-headless
     tty: true
