@@ -1,8 +1,8 @@
 version: "3.3"
 services:
   image:
-    image: shadowpanther/neosvr-headless:latest
-    container_name: neosvr-headless
+    image: shadowpanther/resonite-headless:latest
+    container_name: resonite-headless
     tty: true
     stdin_open: true
     environment:

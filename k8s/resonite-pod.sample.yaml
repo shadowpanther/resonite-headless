@@ -1,26 +1,26 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: neosvr-pod
+  name: resonite-pod
 spec:
   containers:
-    - name: neosvr-headless
-      image: shadowpanther/neosvr-headless
+    - name: resonite-headless
+      image: shadowpanther/resonite-headless
       env:
         - name: STEAMBETA
           valueFrom:
             configMapKeyRef:
-              name: neosvr-config
+              name: resonite-config
               key: STEAMBETA
         - name: STEAMBETAPASSWORD
           valueFrom:
             configMapKeyRef:
-              name: neosvr-config
+              name: resonite-config
               key: STEAMBETAPASSWORD
         - name: STEAMLOGIN
           valueFrom:
             configMapKeyRef:
-              name: neosvr-config
+              name: resonite-config
               key: STEAMLOGIN
       volumeMounts:
         - name: config-vol
@@ -31,7 +31,7 @@ spec:
   volumes:
     - name: config-vol
       configMap:
-        name: neosvr-config
+        name: resonite-config
         items:
           - key: Config.json
             path: Config.json

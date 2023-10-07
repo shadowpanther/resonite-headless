@@ -1,9 +1,9 @@
 FROM mono
 
-LABEL name=neosvr-headless maintainer="panther.ru@gmail.com"
+LABEL name=resonite-headless maintainer="panther.ru@gmail.com"
 
-ENV	STEAMAPPID=740250 \
-	STEAMAPP=neosvr \
+ENV	STEAMAPPID=2519830 \
+	STEAMAPP=resonite \
 	STEAMCMDURL="https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" \
 	STEAMCMDDIR=/opt/steamcmd \
 	STEAMBETA=__CHANGEME__ \
@@ -49,10 +49,10 @@ RUN	addgroup -gid ${USER} steam && \
 	curl -sqL ${STEAMCMDURL} | tar zxfv - && \
 	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${HOMEDIR} ${STEAMAPPDIR} /Config /Logs
 
-COPY	./setup_neosvr.sh ./start_neosvr.sh /Scripts/
+COPY	./setup_resonite.sh ./start_resonite.sh /Scripts/
 
-RUN	chown -R ${USER}:${USER} /Scripts/setup_neosvr.sh /Scripts/start_neosvr.sh && \
-	chmod +x /Scripts/setup_neosvr.sh /Scripts/start_neosvr.sh
+RUN	chown -R ${USER}:${USER} /Scripts/setup_resonite.sh /Scripts/start_resonite.sh && \
+	chmod +x /Scripts/setup_resonite.sh /Scripts/start_resonite.sh
 
 # Switch to user
 USER ${USER}
@@ -63,5 +63,5 @@ VOLUME ["${STEAMAPPDIR}", "/Config", "/Logs"]
 
 STOPSIGNAL SIGINT
 
-ENTRYPOINT ["/Scripts/setup_neosvr.sh"]
-CMD ["/Scripts/start_neosvr.sh"]
+ENTRYPOINT ["/Scripts/setup_resonite.sh"]
+CMD ["/Scripts/start_resonite.sh"]

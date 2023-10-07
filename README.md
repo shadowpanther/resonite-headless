@@ -1,15 +1,15 @@
-# neosvr-headless
-Docker image of a NeosVR headless server
+# resonite-headless
+Docker image of a Resonite headless server
 
-See NeosVR Discord for beta access key. Steam login is required to download the client. You'll have to disable SteamGuard, so probably create a separate Steam account for your headless server.
+See Resonite Discord for beta access key. Steam login is required to download the client. You'll have to disable SteamGuard, so probably create a separate Steam account for your headless server.
 
 Sample docker-compose:
 ```
 version: "3.3"
 services:
   image:
-    image: shadowpanther/neosvr-headless:latest
-    container_name: neosvr-headless
+    image: shadowpanther/resonite-headless:latest
+    container_name: resonite-headless
     tty: true
     stdin_open: true
     environment:
