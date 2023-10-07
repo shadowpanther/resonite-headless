@@ -1,6 +1,6 @@
 FROM mono
 
-LABEL name=resonite-headless maintainer="panther.ru@gmail.com"
+LABEL name=resonite-headless org.opencontainers.image.authors="panther.ru@gmail.com"
 
 ENV	STEAMAPPID=2519830 \
 	STEAMAPP=resonite \
@@ -49,7 +49,7 @@ RUN	addgroup -gid ${USER} steam && \
 	curl -sqL ${STEAMCMDURL} | tar zxfv - && \
 	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${HOMEDIR} ${STEAMAPPDIR} /Config /Logs
 
-COPY	./setup_resonite.sh ./start_resonite.sh /Scripts/
+COPY ./setup_resonite.sh ./start_resonite.sh /Scripts/
 
 RUN	chown -R ${USER}:${USER} /Scripts/setup_resonite.sh /Scripts/start_resonite.sh && \
 	chmod +x /Scripts/setup_resonite.sh /Scripts/start_resonite.sh

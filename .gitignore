@@ -1,4 +1,4 @@
 Config/Config.json
 Logs/*.log
-k8s/neosvr-config.yaml
+k8s/resonite-config.yaml
 docker-compose.yaml
