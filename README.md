@@ -1,7 +1,7 @@
 # resonite-headless
 Docker image of a Resonite headless server
 
-See Resonite Discord for beta access key. Steam login is required to download the client. You'll have to disable SteamGuard, so probably create a separate Steam account for your headless server.
+Use the command `/headlesscode` in Resonite to get a betakey. Steam login is required to download the client. You'll have to disable SteamGuard, so probably create a separate Steam account for your headless server.
 
 Sample docker-compose:
 ```
