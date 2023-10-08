@@ -6,7 +6,7 @@ services:
     tty: true
     stdin_open: true
     environment:
-      STEAMBETA: CHANGEME
+      STEAMBETA: headless
       STEAMBETAPASSWORD: CHANGEME
       STEAMLOGIN: "USER PASSWORD"
     volumes:
