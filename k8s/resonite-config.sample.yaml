@@ -50,7 +50,7 @@ data:
       "autoSpawnItems": null,
       "metamovieRoles": null
     }
-  STEAMBETA: headless-client
-  STEAMBETAPASSWORD: getThisFromDiscord
+  STEAMBETA: headless
+  STEAMBETAPASSWORD: getThisFromResoniteBot
   STEAMLOGIN: your_steam_account_name andPassword
 kind: ConfigMap
