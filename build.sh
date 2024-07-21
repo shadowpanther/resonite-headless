@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t shadowpanther/resonite-headless .
+docker buildx build -t shadowpanther/resonite-headless .
