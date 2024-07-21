@@ -48,7 +48,7 @@ RUN	groupadd --gid ${USER} steam && \
 	curl -sqL ${STEAMCMDURL} | tar zxfv - && \
 	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs
 
-COPY	--chown ${USER}:${USER} --chmod 755./src/setup_resonite.sh ./src/start_resonite.sh /Scripts/
+COPY	--chown=${USER}:${USER} --chmod=755./src/setup_resonite.sh ./src/start_resonite.sh /Scripts/
 
 #RUN	chown -R ${USER}:${USER} /Scripts/setup_resonite.sh /Scripts/start_resonite.sh && \
 #	chmod +x /Scripts/setup_resonite.sh /Scripts/start_resonite.sh
