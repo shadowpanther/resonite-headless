@@ -1,6 +1,6 @@
-FROM mono
+FROM	ubuntu
 
-LABEL name=resonite-headless org.opencontainers.image.authors="panther.ru@gmail.com"
+LABEL	name=resonite-headless org.opencontainers.image.authors="panther.ru@gmail.com"
 
 ENV	STEAMAPPID=2519830 \
 	STEAMAPP=resonite \
@@ -9,55 +9,54 @@ ENV	STEAMAPPID=2519830 \
 	STEAMBETA=__CHANGEME__ \
 	STEAMBETAPASSWORD=__CHANGEME__ \
 	STEAMLOGIN=__CHANGEME__ \
-	USER=1000 \
+	USER=2000 \
 	HOMEDIR=/home/steam
 ENV	STEAMAPPDIR="${HOMEDIR}/${STEAMAPP}-headless"
 
 # Prepare the basic environment
 RUN	set -x && \
-	apt-get -y update && \
-	apt-get -y upgrade && \
-	apt-get -y install curl lib32gcc1 libopus-dev libopus0 opus-tools libc-dev && \
+	apt -y update && \
+	apt -y upgrade && \
+	apt -y install curl lib32gcc-s1 libopus-dev libopus0 opus-tools libc6-dev dotnet-runtime-8.0 && \
 	rm -rf /var/lib/{apt,dpkg,cache}
 
 # Add locales
 RUN	apt-get update && \
-	DEBIAN_FRONTEND=noninteractive apt-get install -y locales
-
-RUN	sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y locales && \
+	sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 	sed -i -e 's/# en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' /etc/locale.gen && \
 	dpkg-reconfigure --frontend=noninteractive locales && \
 	update-locale LANG=en_US.UTF-8 && \
 	update-locale LANG=en_GB.UTF-8 && \
 	rm -rf /var/lib/{apt,dpkg,cache}
-
 ENV	LANG en_GB.UTF-8
 
-# Fix the LetsEncrypt CA cert
-RUN	sed -i 's#mozilla/DST_Root_CA_X3.crt#!mozilla/DST_Root_CA_X3.crt#' /etc/ca-certificates.conf && update-ca-certificates
+# Fix the LetsEncrypt CA cert (is this still needed?)
+#RUN	sed -i 's#mozilla/DST_Root_CA_X3.crt#!mozilla/DST_Root_CA_X3.crt#' /etc/ca-certificates.conf && update-ca-certificates
 
 # Create user, install SteamCMD
-RUN	addgroup -gid ${USER} steam && \
-	adduser --disabled-login \
+RUN	groupadd --gid ${USER} steam && \
+	useradd --home-dir ${HOMEDIR} \
+		--create-home
 		--shell /bin/bash \
-		--gecos "" \
+		--comment "" \
 		--gid ${USER} \
 		--uid ${USER} \
 		steam && \
-	mkdir -p ${STEAMCMDDIR} ${HOMEDIR} ${STEAMAPPDIR} /Config /Logs /Scripts && \
+	mkdir -p ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs /Scripts && \
 	cd ${STEAMCMDDIR} && \
 	curl -sqL ${STEAMCMDURL} | tar zxfv - && \
-	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${HOMEDIR} ${STEAMAPPDIR} /Config /Logs
+	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs
 
-COPY ./src/setup_resonite.sh ./src/start_resonite.sh /Scripts/
+COPY	--chown ${USER}:${USER} --chmod 755./src/setup_resonite.sh ./src/start_resonite.sh /Scripts/
 
-RUN	chown -R ${USER}:${USER} /Scripts/setup_resonite.sh /Scripts/start_resonite.sh && \
-	chmod +x /Scripts/setup_resonite.sh /Scripts/start_resonite.sh
+#RUN	chown -R ${USER}:${USER} /Scripts/setup_resonite.sh /Scripts/start_resonite.sh && \
+#	chmod +x /Scripts/setup_resonite.sh /Scripts/start_resonite.sh
 
 # Switch to user
-USER ${USER}
+USER	${USER}
 
-WORKDIR ${STEAMAPPDIR}
+WORKDIR	${STEAMAPPDIR}
 
 VOLUME ["${STEAMAPPDIR}", "/Config", "/Logs"]
 
