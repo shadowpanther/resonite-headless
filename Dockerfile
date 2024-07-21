@@ -37,7 +37,7 @@ ENV	LANG en_GB.UTF-8
 # Create user, install SteamCMD
 RUN	groupadd --gid ${USER} steam && \
 	useradd --home-dir ${HOMEDIR} \
-		--create-home
+		--create-home \
 		--shell /bin/bash \
 		--comment "" \
 		--gid ${USER} \
