@@ -10,7 +10,10 @@ services:
       STEAMBETAPASSWORD: CHANGEME
       STEAMLOGIN: "USER PASSWORD"
     volumes:
-      - "./Config:/Config:ro"
-      - "./Logs:/Logs"
-      - "/etc/localtime:/etc/localtime:ro"
+      - resonite-data:/home/steam/resonite-headless
+      - ./Config:/Config:ro
+      - ./Logs:/Logs
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
+volumes:
+  resonite-data:

@@ -19,10 +19,13 @@ services:
       STEAMBETAPASSWORD: ask-bot-for-code
       STEAMLOGIN: "your_steam_login your_steam_password"
     volumes:
-      - "./Config:/Config:ro"
-      - "./Logs:/Logs"
-      - "/etc/localtime:/etc/localtime:ro"
+      - resonite-data:/home/steam/resonite-headless
+      - ./Config:/Config:ro
+      - ./Logs:/Logs
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
+volumes:
+  resonite-data:
 ```
 
 Place your `Config.json` into `Config` folder. Logs would be stored in `Logs` folder.
