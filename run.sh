@@ -10,5 +10,6 @@ if [ ! -f ./docker-compose.yaml ]; then
     echo "Created a docker-compose.yaml in the current folder for you. Please fill in the needed parameters."
 else
     chmod a+w Logs
+    docker-compose pull
     docker-compose up -d
 fi
