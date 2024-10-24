@@ -21,7 +21,7 @@ services:
     volumes:
       - resonite-data:/home/steam/resonite-headless
       - ./Config:/Config:ro
-      - ./Logs:/Logs
+      - ./Logs:/Logs:rw
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
 volumes:
