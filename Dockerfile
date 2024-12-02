@@ -1,4 +1,4 @@
-FROM	ubuntu
+FROM	ubuntu:oracular
 
 LABEL	name=resonite-headless org.opencontainers.image.authors="panther.ru@gmail.com"
 
@@ -17,7 +17,7 @@ ENV	STEAMAPPDIR="${HOMEDIR}/${STEAMAPP}-headless"
 RUN	set -x && \
 	apt -y update && \
 	apt -y upgrade && \
-	apt -y install curl lib32gcc-s1 libopus-dev libopus0 opus-tools libc6-dev dotnet-runtime-8.0 && \
+	apt -y install curl lib32gcc-s1 libopus-dev libopus0 opus-tools libc6-dev libfreetype6 dotnet-runtime-9.0 && \
 	rm -rf /var/lib/{apt,dpkg,cache}
 
 # Add locales
