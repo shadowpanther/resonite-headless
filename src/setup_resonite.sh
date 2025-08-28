@@ -1,6 +1,7 @@
 #!/bin/sh
 
 bash "${STEAMCMDDIR}/steamcmd.sh" \
+	+@sSteamCmdForcePlatformType windows \
 	+force_install_dir ${STEAMAPPDIR} \
 	+login ${STEAMLOGIN} \
 	+app_license_request ${STEAMAPPID} \
