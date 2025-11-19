@@ -7,7 +7,6 @@ Steam login is required to download the client. You'll have to disable SteamGuar
 
 Sample docker-compose:
 ```
-version: "3.3"
 services:
   resonite:
     image: shadowpanther/resonite-headless:latest
