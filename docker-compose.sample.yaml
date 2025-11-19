@@ -1,6 +1,9 @@
 services:
   resonite:
     image: shadowpanther/resonite-headless:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: resonite-headless
     tty: true
     stdin_open: true
