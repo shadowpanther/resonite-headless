@@ -1,11 +1,16 @@
 #!/bin/sh
 
+BETAPASSWORDPARAM=""
+if [ -n "${STEAMBETAPASSWORD}" ]; then
+	BETAPASSWORDPARAM="-betapassword ${STEAMBETAPASSWORD}"
+fi
+
 bash "${STEAMCMDDIR}/steamcmd.sh" \
 	+@sSteamCmdForcePlatformType windows \
 	+force_install_dir ${STEAMAPPDIR} \
 	+login ${STEAMLOGIN} \
 	+app_license_request ${STEAMAPPID} \
-	+app_update ${STEAMAPPID} -beta ${STEAMBETA} -betapassword ${STEAMBETAPASSWORD} validate \
+	+app_update ${STEAMAPPID} -beta ${STEAMBETA} ${BETAPASSWORDPARAM} validate \
 	+quit
 
 chmod +x ${STEAMAPPDIR}/dotnet-install.sh
