@@ -18,7 +18,7 @@ ENV	STEAMAPPDIR="${HOMEDIR}/${STEAMAPP}-headless"
 RUN	set -x && \
 	apt -y update && \
 	apt -y upgrade && \
-	apt -y install curl lib32gcc-s1 libfreetype6 dotnet-runtime-9.0 dotnet-runtime-10.0 && \
+	apt -y install curl lib32gcc-s1 libfreetype6 libbrotli1 libicu76 && \
 	rm -rf /var/lib/{apt,dpkg,cache}
 
 # Add locales
@@ -50,9 +50,6 @@ RUN	groupadd --gid ${USER} steam && \
 	chown -R ${USER}:${USER} ${STEAMCMDDIR} ${STEAMAPPDIR} /Config /Logs
 
 COPY	--chown=${USER}:${USER} --chmod=755 ./src/setup_resonite.sh ./src/start_resonite.sh /Scripts/
-
-#RUN	chown -R ${USER}:${USER} /Scripts/setup_resonite.sh /Scripts/start_resonite.sh && \
-#	chmod +x /Scripts/setup_resonite.sh /Scripts/start_resonite.sh
 
 # Switch to user
 USER	${USER}
