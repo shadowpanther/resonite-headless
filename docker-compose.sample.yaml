@@ -1,12 +1,18 @@
 services:
   resonite:
     image: shadowpanther/resonite-headless:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: resonite-headless
     tty: true
     stdin_open: true
     environment:
-      STEAMBETA: headless
-      STEAMBETAPASSWORD: CHANGEME
+      DOTNETVERSION: 10.0
+      # STEAMBETA: headless
+      # STEAMBETAPASSWORD: CHANGEME
+      STEAMBETA: prerelease
+      STEAMBETAPASSWORD: ""
       STEAMLOGIN: "USER PASSWORD"
     volumes:
       - resonite-data:/home/steam/resonite-headless
