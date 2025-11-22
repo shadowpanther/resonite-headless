@@ -9,12 +9,12 @@ services:
     stdin_open: true
     environment:
       ## Prerelease
-      DOTNETVERSION: "10.0"
-      STEAMBETA: prerelease
-      STEAMBETAPASSWORD: ""
+      # DOTNETVERSION: "10.0"
+      # STEAMBETA: prerelease
+      # STEAMBETAPASSWORD: ""
       ## Release
-      # STEAMBETA: headless
-      # STEAMBETAPASSWORD: CHANGEME
+      STEAMBETA: headless
+      STEAMBETAPASSWORD: CHANGEME
       STEAMLOGIN: "USER PASSWORD"
     volumes:
       - resonite-data:/home/steam/resonite-headless

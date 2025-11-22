@@ -31,7 +31,7 @@ To test the prerelease version of the headless, which now [uses .NET 10.0](https
 ```
 services:
   resonite:
-    image: shadowpanther/resonite-headless:dotnet10
+    image: shadowpanther/resonite-headless:latest
     container_name: resonite-headless
     tty: true
     stdin_open: true
