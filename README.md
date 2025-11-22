@@ -27,6 +27,29 @@ volumes:
   resonite-data:
 ```
 
+To test the prerelease version of the headless, which now [uses .NET 10.0](https://github.com/Yellow-Dog-Man/Resonite-Issues/discussions/5868):
+```
+services:
+  resonite:
+    image: shadowpanther/resonite-headless:dotnet10
+    container_name: resonite-headless
+    tty: true
+    stdin_open: true
+    environment:
+      DOTNETVERSION: "10.0"
+      STEAMBETA: prerelease
+      STEAMBETAPASSWORD: ""
+      STEAMLOGIN: "your_steam_login your_steam_password"
+    volumes:
+      - resonite-data:/home/steam/resonite-headless
+      - ./Config:/Config:ro
+      - ./Logs:/Logs:rw
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+volumes:
+  resonite-data:
+```
+
 Place your `Config.json` into `Config` folder. Logs would be stored in `Logs` folder.
 
 You probably need to set `vm.max_map_count=262144` by doing `echo "vm.max_map_count=262144" >> /etc/sysctl.conf` lest you end up with frequent GC crashes.
